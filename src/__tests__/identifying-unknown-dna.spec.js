@@ -1,14 +1,9 @@
 import test from 'tape';
+import { readFileSync } from 'fs';
 import getUnknownDNA from '../identifying-unknown-dna';
 
 test('Identifying unknown DNA', (t) => {
-    const input = `>Rosalind_6404
-CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCCTCCCACTAATAATTCTGAGG
->Rosalind_5959
-CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCTATATCCATTTGTCAGCAGACACGC
->Rosalind_0808
-CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAGGTGGAAT`;
-
+    const input = readFileSync(`${__dirname}/../data/identifying-unknown-dna.txt`, 'utf8');
     const actual = getUnknownDNA(input);
     const expected = 'Rosalind_0808\n60.919540';
 
